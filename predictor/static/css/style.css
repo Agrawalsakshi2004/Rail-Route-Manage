@@ -1,0 +1,199 @@
+/* ===== BODY ===== */
+body {
+    background: linear-gradient(135deg, #0f172a, #065f46);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== TITLE ===== */
+.title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #a855f7;
+}
+
+/* ===== CARD ===== */
+.card {
+    border-radius: 20px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== FORM ===== */
+.form-control {
+    background: #0f172a;
+    border: 1px solid #38bdf8;
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+/* ===== BUTTON ===== */
+.btn-custom {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 15px #22c55e;
+}
+
+/* ===== FLOATING ===== */
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ===== TRAIN CARDS ===== */
+.train-card {
+    transition: 0.3s;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    background: #1e293b;
+    color: white;
+    border-radius: 15px;
+}
+
+.train-card h5 {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.train-card p {
+    color: #cbd5e1;
+}
+
+.train-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #38bdf8;
+}
+
+/* ===== 🔥 TIMELINE (HORIZONTAL FIX) ===== */
+.timeline {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    overflow-x: auto;
+    padding: 15px;
+}
+
+/* each item */
+.timeline-item {
+    min-width: 260px;
+    position: relative;
+}
+
+/* dot (only show when needed later) */
+.train-dot {
+    display: none;
+}
+
+/* content */
+.timeline-content {
+    background: #1e293b;
+    padding: 12px 15px;
+    border-radius: 12px;
+    min-width: 250px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* ===== SELECTED TRAIN ===== */
+.timeline-content.selected {
+    background: #7f1d1d;
+    border-left: 4px solid #22c55e;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #22c55e;
+}
+
+/* ===== CURRENT TRAIN (RIGHT SIDE HIGHLIGHT) ===== */
+.timeline-content.current {
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 15px #38bdf8;
+}
+
+/* ===== 🚆 TRAIN ICON CONTROL ===== */
+
+/* default → hide */
+.timeline-content::after {
+    content: "";
+}
+
+/* only show for current train */
+.timeline-content.current::after {
+    content: "🚆";
+    position: absolute;
+    right: -25px;
+    top: 10px;
+    animation: moveTrain 2s linear infinite;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes moveTrain {
+    0% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(10px); opacity: 1; }
+    100% { transform: translateX(0); opacity: 0.5; }
+}
+
+/* ===== SCROLLBAR (OPTIONAL COOL LOOK) ===== */
+.timeline::-webkit-scrollbar {
+    height: 6px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+    background: #22c55e;
+    border-radius: 10px;
+}
+
+.horizontal-line {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.h-card {
+    min-width: 200px;
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.h-card:hover {
+    transform: scale(1.05);
+}
+
+.h-card.selected {
+    border: 2px solid #22c55e;
+    box-shadow: 0 0 15px #22c55e;
+}
