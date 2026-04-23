@@ -55,7 +55,7 @@ def get_all_trains(source, destination):
     return sorted(trains, key=lambda x: x["time"])
 
 
-# 🔥 CORE ML (RECURSIVE)
+#CORE ML (RECURSIVE)
 def predict_future_delays(train_df, source, destination):
 
     train_df = train_df.sort_values("station_sequence").reset_index(drop=True)
@@ -71,7 +71,7 @@ def predict_future_delays(train_df, source, destination):
         (train_df["station_sequence"] <= dest_seq)
     ].reset_index(drop=True)
 
-    # 🔥 LIVE CURRENT TIME
+    #LIVE CURRENT TIME
     current_time_now = datetime.now().time()
 
     temp_sorted = route_df.sort_values("station_sequence")
@@ -85,7 +85,7 @@ def predict_future_delays(train_df, source, destination):
     else:
         current_row = passed.iloc[-1]
 
-    # 🔥 STATUS LOGIC
+    #STATUS LOGIC
     dest_time = route_df.iloc[-1]["scheduled_arrival"]
 
     if current_time_now >= dest_time:
@@ -95,7 +95,7 @@ def predict_future_delays(train_df, source, destination):
     else:
         status = str(current_row["station_name"])
 
-    # 🔥 DELAY INIT
+    #DELAY INIT
     current_delay = float(current_row["arrival_delay_min"])
     current_cum_delay = float(current_row["cumulative_delay"])
 
@@ -103,7 +103,7 @@ def predict_future_delays(train_df, source, destination):
 
     predictions = []
 
-    # 🔥 FUTURE STATIONS ML
+    #FUTURE STATIONS ML
     for i in range(1, len(route_df)):
 
         row = route_df.iloc[i]
@@ -141,7 +141,7 @@ def predict_future_delays(train_df, source, destination):
         current_cum_delay += pred_delay
         current_delay = pred_delay
 
-    # 🔥 RETURN FINAL
+    #RETURN FINAL
     return {
         "current_station": status,
         "current_delay": float(current_row["arrival_delay_min"]),
@@ -158,7 +158,7 @@ def track_trains(source, destination, selected_journey):
     current_time = datetime.now().time()
     result = []
 
-    # 🟢 SELECTED TRAIN
+    #SELECTED TRAIN
     selected_df = df[df["journey_id"] == selected_journey]
     temp_sorted = selected_df.sort_values("station_sequence")
 
@@ -182,7 +182,7 @@ def track_trains(source, destination, selected_journey):
 
     selected_distance = float(current_row["distance_from_source"])
 
-    # ❗ selected ko current tabhi banayenge jab wo actually current ho
+    #selected ko current tabhi banayenge jab wo actually current ho
     selected_is_current = True
 
     result.append({
@@ -195,12 +195,12 @@ def track_trains(source, destination, selected_journey):
         "is_current": selected_is_current
     })
 
-    # 🔴 OTHER TRAINS
+    #OTHER TRAINS
     journeys = df[df["station_name"] == source]["journey_id"].unique()
 
     prev_distance = selected_distance
 
-    # 🔥 CONTROL → sirf 1 train current hogi
+    #CONTROL → sirf 1 train current hogi
     current_assigned = False
 
     for jid in journeys:
@@ -241,7 +241,7 @@ def track_trains(source, destination, selected_journey):
 
         distance = float(current_row["distance_from_source"])
 
-        # 🔥 ONLY ONE CURRENT TRAIN
+        #ONLY ONE CURRENT TRAIN
         if not current_assigned:
             is_current_flag = True
             current_assigned = True
