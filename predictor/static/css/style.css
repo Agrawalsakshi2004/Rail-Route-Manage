@@ -94,7 +94,7 @@ body {
     box-shadow: 0 0 20px #38bdf8;
 }
 
-/* ===== 🔥 TIMELINE (HORIZONTAL FIX) ===== */
+/* ===== TIMELINE (HORIZONTAL FIX) ===== */
 .timeline {
     display: flex;
     flex-direction: row;
@@ -138,7 +138,7 @@ body {
     box-shadow: 0 0 15px #38bdf8;
 }
 
-/* ===== 🚆 TRAIN ICON CONTROL ===== */
+/* ===== TRAIN ICON CONTROL ===== */
 
 /* default → hide */
 .timeline-content::after {
